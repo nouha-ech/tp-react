@@ -56,7 +56,7 @@ Chaque étape introduit **une seule notion nouvelle** et réutilise les précéd
 3. Clonez **votre** dépôt (remplacez `VOTRE-COMPTE`) :
 
 ```bash
-git clone https://github.com/VOTRE-COMPTE/tp-react-taches.git
+git clone https://github.com/nouha-ech/tp-react
 cd tp-react-taches
 ```
 
