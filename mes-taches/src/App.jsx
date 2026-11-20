@@ -56,7 +56,9 @@ const [chargement, setChargement] = useState(
   function supprimerTache(id) {
     setTaches(taches.filter((tache) => tache.id !== id))
   }
-
+function supprimerTerminees() {
+  setTaches(taches.filter((tache) => !tache.terminee))
+}
   function ajouterTache(titre) {
     setTaches([...taches, { id: Date.now(), titre, terminee: false }])
   }
@@ -96,7 +98,13 @@ const [chargement, setChargement] = useState(
             onBasculer={basculerTache}
             onSupprimer={supprimerTache}
           />
+          
         )}
+          <button className="danger" onClick={supprimerTerminees}
+    disabled={!taches.some((tache) => tache.terminee)}
+  >
+    Supprimer les tâches terminées
+  </button>
       </Carte>
       <Carte titre="Statistiques">
         <Statistiques taches={taches} />
