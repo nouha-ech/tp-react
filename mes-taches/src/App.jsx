@@ -10,13 +10,19 @@ import Statistiques from './components/Statistiques.jsx'
 import Horloge from './components/Horloge.jsx'
 
 function App() {
-    const [taches, setTaches] = useState([])
-  const [chargement, setChargement] = useState(true)
+  const [taches, setTaches] = useState(() => {
+  const sauvegarde = localStorage.getItem('taches')
+  return sauvegarde ? JSON.parse(sauvegarde) : []
+})
+const [chargement, setChargement] = useState(
+  () => localStorage.getItem('taches') === null,
+)
   const [erreur, setErreur] = useState(null)
   const [filtre, setFiltre] = useState('toutes')
 
 
   useEffect(() => {
+    if (localStorage.getItem('taches') !== null) return
     let annule = false
 
     fetch('/taches.json')
@@ -95,7 +101,7 @@ function App() {
       <Carte titre="Statistiques">
         <Statistiques taches={taches} />
       </Carte>
-      <Pied auteur="nohaila" />
+      <Pied auteur="ech.chnaoui nohaila" />
     </div>
   )
 }
